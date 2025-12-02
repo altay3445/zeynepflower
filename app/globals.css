@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  background: #050505;
+  color: white;
+  overflow: hidden;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --- Merkezdeki Çiçek İçin Nefes Alma Animasyonu --- */
+@keyframes pulse-flower {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: brightness(1) drop-shadow(0 0 10px rgba(255,105,180,0.3));
+  }
+  50% { 
+    transform: scale(1.1); 
+    filter: brightness(1.3) drop-shadow(0 0 30px rgba(255,105,180,0.8));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-pulse-flower {
+  animation: pulse-flower 3s ease-in-out infinite;
+  cursor: pointer;
+}
+
+/* --- Arka Plan Çiçekleri İçin Sonsuz Hareket (Eski kod devam ediyor) --- */
+@keyframes continuous-bloom {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  20% { transform: scale(1.1) rotate(10deg); opacity: 1; }
+  50% { transform: scale(1) rotate(-5deg) translateY(-10px); opacity: 1; }
+  80% { transform: scale(1.05) rotate(5deg) translateY(-5px); opacity: 0.8; }
+  100% { transform: scale(1.2) rotate(0deg); opacity: 0; }
+}
+
+.animate-bloom-infinite {
+  animation-name: continuous-bloom;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
 }
